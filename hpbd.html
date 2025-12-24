@@ -1,0 +1,215 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Happy Birthday
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+        body {
+            font-family: 'Fredoka One', cursive;
+        }
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in {
+        animation: fade-in 1s ease forwards;
+      }
+      .bong-bong-container {
+        position: relative;
+        height: 100px;
+      }
+      .bong-bong {
+        width: 100px;
+        position: absolute;
+        top: -140px;
+        left: 50%;
+        transform: translate(-50%, -220%);
+        animation: float 2s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, -10px);
+        }
+        100% {
+          transform: translate(-50%, 0);
+        }
+      }
+      @keyframes slide-up {
+        from {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .animate-slide-up {
+        animation: slide-up 1s ease forwards;
+        animation-delay: 0s;
+      }
+      #birthdayMusic {
+          display: none;
+      }
+      .music-button {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #f472b6;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+      .icon {
+          width: 220px;
+          height: auto;
+          margin: 45px 20px;
+      }
+      .text-container {
+          max-height: 1000px;
+          overflow-y: auto;
+          padding: 10px;
+          border-radius: 5px;
+      }
+      .scrollable-text {
+          max-height: 1000px;
+          overflow-y: auto;
+          padding: 10px;
+          border-radius: 5px;
+      }
+  </style>
+ </head>
+ 
+ <body class="bg-pink-100 flex items-center justify-center min-h-screen">
+  <div class="relative w-full h-full flex items-center justify-center">
+    <button id="returnButton" style="position: fixed; top: 10px; left: 10px; padding: 20px 50px; background-color: pink; color: white; border: none; border-radius: 5px; cursor: pointer; z-index: 10000;">Trở về</button>
+   <div class="absolute top-0 left-0 w-full flex justify-between items-start p-4">
+    <img alt="Decorative banner" class="w-1/4" height="50" src="left.png" width="100"/>
+    <img alt="Decorative banner" class="w-1/4" height="50" src="right.png" width="100"/>
+   </div>
+   <div class="w-1/2 flex flex-col items-center">
+    <div class="text-left w-full relative">
+     <img alt="Icon" width=70" height="50" src="hat.png"/>
+     <h1 class="text-8xl text-white drop-shadow-lg animate-fade-in">
+      Happy
+     </h1>
+     <h1 class="text-8xl text-pink-500 drop-shadow-lg animate-fade-in">
+      Birthday
+     </h1>
+     <div class="mt-4 bg-pink-300 text-white py-2 px-4 rounded-full inline-flex items-center justify-start space-x-2 whitespace-nowrap animate-fade-in">
+      <i class="fas fa-star">
+      </i>
+      <span>
+       04/01/2002
+      </span>
+      <i class="fas fa-star">
+      </i>
+     </div>
+     <button class="mt-4 bg-pink-400 text-white py-2 px-4 rounded-full flex items-center space-x-2" onclick="showModal()">
+      <span>
+       Click here 👉
+      </span>
+      <i class="fas fa-envelope">
+      </i>
+     </button>
+    </div>
+   </div>
+   <div class="absolute bottom-0 right-0 p-4">
+   </div>
+   <div class="absolute top-1/4 right-1/4 flex flex-col items-center">
+    <div class="relative">
+     <img src="bong1bong.png" class="bong-bong" alt="Bong bóng" />
+     <img alt="Code snippet" class="rounded-full w-64 h-64 object-cover animate-slide-up" height="250" src="kien.png" width="250"/>
+     <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-pink-300 text-white py-1 px-4 rounded-full">
+      <span>
+       Babi 
+      </span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <audio id="birthdayMusic" src="khongiuemthiiuai.mp3" preload="auto"></audio>
+  <button class="music-button" onclick="toggleMusic()">Nghe Nhạc</button>
+  <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <button class="absolute top-2 right-2 bg-red-500 text-white py-1 px-2 rounded" onclick="hideModal()">Đóng</button>
+    <div class="bg-white rounded-lg w-3/4 h-3/4 flex">
+      <div class="w-1/2 flex items-center justify-center">
+        <img src="banhkem.png" alt="Image" class="max-w-full max-h-full"/>
+      </div>
+      <div class="w-1/2 p-4 text-container">
+        <h2 style="display:flex; justify-content: center; font-family: 'Great Vibes', sans-serif; font-size: 2.5rem; color: #333;">🎀💌 Letters 💌🎀</h2>
+        <div class="scrollable-text">
+            <p style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #555; text-align:left;">Hôm nay là sinh nhật của em – ngày này tháng nọ, và anh muốn gửi đến em những lời chúc tốt đẹp nhất thông qua món quà nhỏ này.</p>
+            <p style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #555; text-align: left;">Chúc em tuổi mới thật nhiều sức khỏe, luôn xinh đẹp, luôn hạnh phúc, và công việc ngày càng phát triển. Không chỉ hôm nay, mà anh hy vọng rằng mỗi ngày trôi qua đều sẽ là một ngày tuyệt vời đối với em.</p>
+            <p style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #555; text-align: left;">Anh nghĩ là không có ai hoàn hảo cả vậy nên nếu có lúc nào đó em cảm thấy không hài lòng về anh thì nói cho anh biết nha. Anh không muốn thay đổi bất cứ điều gì ở em, vì anh thấy em đã luôn là phiên bản tuyệt vời nhất khi là chính em rồi á. Nhưng mà anh sẵn sàng thay đổi để phù hợp với em hơn, để tụi mình có thể hiểu nhau và trân trọng nhau nhiều hơn. Anh không dám hứa trước điều gì  nhưng anh sẽ luôn cố gắng hết sức trong khả năng của mình.</p>
+            <p style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #555; text-align: left;">Cảm ơn em vì đã chọn ở lại bên anh trong suốt khoảng thời gian này. Anh thực sự rất trân trọng và biết ơn em nhiều lắm. 💗</p>
+            <p style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #555; text-align: left;">À mà… cái web này không phải chuyên môn của anh, nên có hơi sơ sài một chút 😊. Em thông cảm cho anh nhaaaa!</p>
+            <p style="font-family: 'Roboto', sans-serif; font-size: 1.2rem; color: #555; text-align: left; font-weight: bold;">Chúc mừng sinh nhật Em 💗!</p>
+        </div>
+    </div>
+    </div>
+  </div>
+  <script>
+    let isPlaying = false;
+
+    window.onload = function() {
+      const img = document.querySelector('.animate-slide-up');
+      const bongBong = document.querySelector('.bong-bong');
+      img.classList.add('animate-slide-up');
+      bongBong.classList.add('animate-slide-up');
+      
+      setInterval(() => {
+        confetti({
+          particleCount: 100,
+          spread: 160,
+          origin: { y: 0.6 }
+        });
+      }, 2000);
+    };
+
+    function toggleMusic() {
+      const music = document.getElementById('birthdayMusic');
+      if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+        document.querySelector('.music-button').innerText = 'Nghe Nhạc';
+      } else {
+        music.play();
+        isPlaying = true;
+        document.querySelector('.music-button').innerText = 'Tắt Nhạc';
+      }
+    }
+
+    function showModal() {
+      document.getElementById('modal').classList.remove('hidden');
+    };
+
+    function hideModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+    document.getElementById('returnButton').addEventListener('click', function() {
+      window.location.href = 'hoa.html'; // Redirect to love4.html
+  });
+  </script>
+ </body>
+</html>

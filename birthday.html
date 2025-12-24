@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #fce4ec;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            padding: 20px;
+            position: relative;
+        }
+        .balloons {
+            font-size: 50px;
+            animation: floatBalloons 3s infinite alternate ease-in-out;
+        }
+        .cake {
+            font-size: 720px;
+            position: relative;
+            display: inline-block;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #d81b60;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px #888;
+            text-align: center;
+            border: 3px solid pink;
+            border-radius: 10px;
+        }
+        .close {
+            cursor: pointer;
+            color: red;
+            font-size: 18px;
+        }
+        .fireworks {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .cake img {
+            width: 80px;
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        @keyframes floatBalloons {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-20px); }
+        }
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: gold;
+            border-radius: 50%;
+            animation: explode 1s linear infinite;
+        }
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+    <div class="container">
+        <div class="balloons">🎈🎈🎈🎈🎉 Happy Birthday 🎉🎈🎈🎈🎈</div>
+        <h2>Chúc mừng sinh nhật, <span id="name">[Tên của bạn]</span>!</h2>
+        <h3>Ngày sinh: <span id="dob">[Ngày sinh]</span></h3>
+        <div class="cake">🎂
+            <img src="emiu.png" alt="Birthday Image">
+        </div>
+        <br>
+        <button class="button" onclick="showPopup()">Xem thư chúc mừng</button>
+    </div>
+    
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">✖</span>
+        <h2>🎀 Thư chúc mừng 🎀</h2>
+        <p>Chúc bạn có một ngày sinh nhật vui vẻ và tràn đầy hạnh phúc! 🎉🎂</p>
+    </div>
+    
+    <script>
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function createFireworks() {
+            const fireworksContainer = document.getElementById("fireworks");
+            for (let i = 0; i < 30; i++) {
+                let firework = document.createElement("div");
+                firework.className = "firework";
+                firework.style.left = Math.random() * 100 + "vw";
+                firework.style.top = Math.random() * 100 + "vh";
+                fireworksContainer.appendChild(firework);
+                setTimeout(() => firework.remove(), 1000);
+            }
+        }
+        setInterval(createFireworks, 1000);
+    </script>
+</body>
+</html>

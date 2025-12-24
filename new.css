@@ -1,0 +1,33 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.happy-birthday {
+    font-size: 3rem;
+    color: #ff6b6b;
+}
+
+.date {
+    font-size: 1.5rem;
+    color: #495057;
+}
+
+.divider {
+    width: 50%;
+    height: 2px;
+    background-color: #dee2e6;
+    margin: 20px auto;
+}
+
+.high-thw-me {
+    font-size: 1.2rem;
+    color: #343a40;
+    font-style: italic;
+}
+
+.vendit {
+    font-size: 1.5rem;
+    color: #28a745;
+    font-weight: bold;
+}
